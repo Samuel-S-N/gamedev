@@ -185,7 +185,7 @@ animations = [{
 radius = 6.0
 height = 20.0
 
-[node name="Fruit" type="Area2D" unique_id=206251229]
+[node name="Fruit" type="Area2D" unique_id=206251229 groups=["fruit"]]
 script = ExtResource("1_jp5cg")
 metadata/_edit_group_ = true
 
