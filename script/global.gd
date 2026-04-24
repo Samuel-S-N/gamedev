@@ -10,6 +10,10 @@ var restart = false
 
 var p2_joined = false
 
+var level_records = []
+var current_time_str = "00:00:00"
+var current_total_fruits = 0
+
 func _process(_delta):
 	if not restart:
 		check_game_over()
