@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://cluaskiwa2gwq" path="res://script/counter.gd" id="12_7qsfm"]
 [ext_resource type="Texture2D" uid="uid://c5g2bhd6453et" path="res://sprites/Items/Fruits/Pineapple 1.png" id="13_bv48q"]
 [ext_resource type="PackedScene" uid="uid://l84b0o7foccg" path="res://prefabs/flag.tscn" id="14_fldb1"]
+[ext_resource type="Script" uid="uid://d2eu0773m8ihb" path="res://script/timer.gd" id="14_k22d5"]
 [ext_resource type="PackedScene" uid="uid://byt5g2g5m4rfy" path="res://scenes/level_3.tscn" id="15_guvtl"]
 [ext_resource type="Script" uid="uid://6kolt64d5urk" path="res://script/camera.gd" id="17_wdtqu"]
 
@@ -616,7 +617,7 @@ tile_set = SubResource("TileSet_guvtl")
 position = Vector2(-161, -110)
 
 [node name="Player1" type="CharacterBody2D" parent="Players" unique_id=599048375 groups=["player"]]
-position = Vector2(214, 513)
+position = Vector2(212, 512)
 script = ExtResource("2_ne2mo")
 metadata/_edit_group_ = true
 
@@ -694,6 +695,16 @@ script = ExtResource("12_7qsfm")
 position = Vector2(18, 77)
 scale = Vector2(1.66, 1.66)
 texture = ExtResource("13_bv48q")
+
+[node name="Timer" type="Label" parent="HUD" unique_id=915915022]
+offset_left = 50.0
+offset_top = 102.0
+offset_right = 114.0
+offset_bottom = 125.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("8_6cvei")
+text = "00:00:00"
+script = ExtResource("14_k22d5")
 
 [node name="Fruits" type="Node2D" parent="." unique_id=1280259017]
 
