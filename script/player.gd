@@ -1,5 +1,11 @@
 extends CharacterBody2D
 
+@export var player_prefix: String = "p1"
+@export var character_skin: SpriteFrames
+@export var starts_active = true
+
+var is_playing = true
+
 var speed = 160.0
 var jump_velocity = -300.0
 
@@ -16,6 +22,26 @@ var is_alive = true
 
 func _ready() -> void:
 	
+	if character_skin:
+		anim.sprite_frames = character_skin
+	
+	anim.play("idle")
+	
+	if player_prefix == "p1":
+		Global.player1 = self
+	elif player_prefix =="p2":
+		Global.player2 = self
+	
+	if Global.p2_joined == true:
+		starts_active = true
+	
+	if not starts_active:
+		is_playing = false
+		hide()
+		process_mode = Node.PROCESS_MODE_DISABLED
+		$"../Player2/CollisionShape2D".set_deferred("disabled", true)
+	else:
+		is_playing = true
 	
 	pass
 
@@ -34,7 +60,7 @@ func _physics_process(delta: float) -> void:
 func move(delta):
 	
 	if is_alive:
-		dir = Input.get_axis("left","right")
+		dir = Input.get_axis(player_prefix + "_left",player_prefix + "_right")
 	
 	if dir: 
 		velocity.x = dir * speed
@@ -44,7 +70,7 @@ func move(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	if Input.is_action_just_pressed("jump") and extra_jump > 0 and is_alive:
+	if Input.is_action_just_pressed(player_prefix + "_jump") and extra_jump > 0 and is_alive:
 		velocity.y = jump_velocity
 		extra_jump -= 1
 		
@@ -93,6 +119,16 @@ func die():
 	
 	await get_tree().create_timer(1).timeout
 	
-	get_tree().reload_current_scene()
+	#get_tree().reload_current_scene()
 	
 	pass
+	
+func join_game(spawn_pos: Vector2):
+	
+	global_position = spawn_pos
+	is_playing = true
+	show()
+	process_mode = Node.PROCESS_MODE_INHERIT
+	$"../Player2/CollisionShape2D".set_deferred("disabled", false)
+
+pass

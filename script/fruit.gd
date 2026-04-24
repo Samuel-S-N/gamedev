@@ -15,4 +15,4 @@ func _on_area_entered(area: Area2D) -> void:
 		await get_tree().create_timer(1).timeout
 		
 		queue_free()
-	pass # Replace with function body.
+	pass
